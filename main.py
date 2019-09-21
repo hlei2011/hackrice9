@@ -17,17 +17,19 @@ forecast = darksky.get_forecast(
     exclude=[weather.MINUTELY, weather.ALERTS] # default `[]`
 )
 
+print(forecast.currently.temperature)
+
 # Asynchronous way
 # NOTE! On Mac os you will have problem with ssl checking https://github.com/aio-libs/aiohttp/issues/2822
 # So you need to create your own session with disabled ssl verify and pass it into the DarkSkyAsync
 # session = aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False))
 # darksky = DarkSkyAsync(API_KEY, client_session=session)
-
+"""
 darksky = DarkSkyAsync(API_KEY)
 
 latitude = 42.3601
 longitude = -71.0589
-forecast = await darksky.get_forecast(
+forecast = darksky.get_forecast(
     latitude, longitude,
     extend=False, # default `False`
     lang=languages.ENGLISH, # default `ENGLISH`
@@ -45,3 +47,5 @@ forecast.minutely # MinutelyForecast. Can be found at darksky/forecast.py
 forecast.hourly # HourlyForecast. Can be found at darksky/forecast.py
 forecast.daily # DailyForecast. Can be found at darksky/forecast.py
 forecast.alerts # [Alert]. Can be found at darksky/forecast.py
+"""
+
