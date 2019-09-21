@@ -1,6 +1,7 @@
 from geopy.distance import great_circle
 import requests
 from pandas import DataFrame as df
+import pandas
 
 """
 ad1 = input("enter address").replace(" ", "+")
@@ -47,6 +48,16 @@ print(get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', input("enter addres
 
 v = open("mv01d_h12.txt")
 
+flood_df = pandas.read_csv("mv01d_h12.txt")
+flood_df.head()
+flood_matrix = flood_df.iloc[:,:].values
+
+for i in range(len(flood_matrix)):
+    address = flood_matrix[i][0] + flood_matrix[i][1]
+    flood_matrix[i].pop(0)
+    flood_matrix[i].pop(0)
+    flood_matrix[i].insert(0, address)
+    
 
 
 great_circle()
