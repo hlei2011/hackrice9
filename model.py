@@ -154,14 +154,14 @@ exp1 = []
 exp2 = []
 exp3 = []
 for i in range(len(floodtest)):
-    exp1.append([testloc[i][0])
+    exp1.append(testloc[i][0])
     exp2.append(testloc[i][1])
-    exp3.append(floodtest[i]])
+    exp3.append(floodtest[i])
 for i in range(len(floodtrain)):
     exp1.append(loc[i][0])
     exp2.append(loc[i][1])
-    exp3.append(floodtrain[i]])
-print(exp)
+    exp3.append(floodtrain[i])
+#print(exp)
 a = numpy.asarray(exp1)
 b = numpy.asarray(exp2)
 c = numpy.asarray(exp3)
