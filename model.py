@@ -133,6 +133,10 @@ for i in locations:
         test.append(i.get_list())
         testloc.append(i.get_coords())
         
+print(input)
+print(output)
 lin = fit_least_squares(input, output)
+print(lin.get_weights())
 floodtrain = numpy.matmul(input, lin.get_weights())
 floodtest = numpy.matmul(test, lin.get_weights())
+print(floodtest)
