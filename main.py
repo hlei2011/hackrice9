@@ -37,6 +37,6 @@ for i in frange(29.7, 31.7, 0.05):
             exclude=[weather.MINUTELY, weather.ALERTS] # default `[]`
         )
 
-        a += ""+str(i)+""+str(g)+""+str(forecast.daily.data[0].precip_intensity)+"\n"
+        a += ""+str(i)+", "+str(g)+", "+str(forecast.daily.data[0].precip_intensity)+"\n"
 
 print(a)
