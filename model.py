@@ -6,6 +6,18 @@ resv_df = pandas.read_csv("mv01d_h12.txt")
 resv_df.head()
 resv_matrix = resv_df.iloc[:,:].values
 
+prec_df = pandas.read_csv("precip-data.txt")
+prec_df.head()
+prec_matrix = resv_df.iloc[:,:].values
+precip = {}
+for i in prec_matrix:
+    precip[(round(i[0], 0.01), round(i[1], 0.01)] = i[2]
+
+def frange(x, y, jump):
+    while x < y:
+        yield x
+        x += jump
+
 def prox(lat, long):
     m = ""
     mv = 9999999999
@@ -17,11 +29,7 @@ def prox(lat, long):
                     m = resv_matrix[f][0]
                     mv = dis
     return mv
-
-def frange(x, y, jump):
-    while x < y:
-        yield x
-        x += jump
+    
 
 flood_df = pandas.read_csv("FilteredInstruments.csv")
 flood_df.head()
@@ -79,7 +87,7 @@ locations = []
                                                     
 for i in frange(29.7,31.7,0.05):
     for j in frange(-98.0,-94.0,0.05):
-        locations.append(Location(i, j, precip(i,j), elev_dict[(i,j)], prox(i,j)))
+        locations.append(Location(i, j, precip[(i,j)], elev_dict[(i,j)], prox(i,j)))
 
 
 
