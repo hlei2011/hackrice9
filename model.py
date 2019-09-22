@@ -152,7 +152,9 @@ print(floodtrain)
 print(floodtest)
 exp = []
 for i in range(len(floodtest)):
-    exp.append([testloc[i], floodtest[i]])
+    exp.append([testloc[i][0],testloc[i][1], floodtest[i]])
 for i in range(len(floodtrain)):
-    exp.append([loc[i], floodtrain[i]])
+    exp.append([loc[i][0],loc[i][1], floodtrain[i]])
 print(exp)
+a = numpy.asarray(exp)
+numpy.savetxt("export.csv", a)
