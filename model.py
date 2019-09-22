@@ -150,11 +150,21 @@ floodtrain = list(numpy.matmul(inp, lin.get_weights()))
 floodtest = list(numpy.matmul(test, lin.get_weights()))
 print(floodtrain)
 print(floodtest)
-exp = []
+exp1 = []
+exp2 = []
+exp3 = []
 for i in range(len(floodtest)):
-    exp.append([testloc[i][0],testloc[i][1], floodtest[i]])
+    exp1.append([testloc[i][0])
+    exp2.append(testloc[i][1])
+    exp3.append(floodtest[i]])
 for i in range(len(floodtrain)):
-    exp.append([loc[i][0],loc[i][1], floodtrain[i]])
+    exp1.append(loc[i][0])
+    exp2.append(loc[i][1])
+    exp3.append(floodtrain[i]])
 print(exp)
-a = numpy.asarray(exp)
-numpy.savetxt("export.csv", a)
+a = numpy.asarray(exp1)
+b = numpy.asarray(exp2)
+c = numpy.asarray(exp3)
+numpy.savetxt("export1.csv", a)
+numpy.savetxt("export2.csv", b)
+numpy.savetxt("export3.csv", c)
