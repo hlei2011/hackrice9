@@ -2,6 +2,14 @@ from geopy.distance import great_circle
 import requests
 from pandas import DataFrame as df
 import pandas
+import plotly.graph_objects as go 
+
+floods = pandas.read_csv('')
+
+fig = go.Figure(go.Densitymapbox(lat=floods.Latitude, lon = floods.Longitude))
+fig.update_layout(mapbox_style = "x", mapbox_center_lon = 180)
+fig.update_layout(margin = {"r": 0, "t": 0, "l": 0, "b": 0})
+fig.show()
 
 """
 ad1 = input("enter address").replace(" ", "+")
