@@ -12,4 +12,6 @@
     <a href="https://plot.ly/~guy477/60/?share_key=jtHJ3mXW37aA8sbwJ3QXK7" target="_blank" title="Flood Heat Map (Higher Value = Safer)" style="display: block; text-align: center;"><img src="https://plot.ly/~guy477/60.png?share_key=jtHJ3mXW37aA8sbwJ3QXK7" alt="Flood Heat Map (Higher Value = Safer)" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
 
+## Todo
 
+* Have the program dynamically evlauate how flood prone an area of the users choice is within an undecided radius.
