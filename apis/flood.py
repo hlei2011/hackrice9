@@ -5,13 +5,6 @@ import pandas
 import plotly.graph_objects as go 
 import requests
 
-#floods = pandas.read_csv('')
-"""
-fig = go.Figure(go.Densitymapbox(lat=floods.Latitude, lon = floods.Longitude))
-fig.update_layout(mapbox_style = "x", mapbox_center_lon = 180)
-fig.update_layout(margin = {"r": 0, "t": 0, "l": 0, "b": 0})
-fig.show()
-"""
 
 def get_precipIntensity(apiKey, lat, lon):
     """
@@ -39,14 +32,9 @@ def get_precipIntensity(apiKey, lat, lon):
         print('ERROR: {}'.format(address))
         precip_ntensity = 0
     return precip_ntensity
-"""
-ad1 = input("enter address").replace(" ", "+")
-response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ad1)
-print(response)
-print(response.ur)
-resp_json_payload = response.json()
-print(resp_json_payload['results'][0]['geometry']['location'])
-"""
+
+
+
 
 def get_lat_lng(apiKey, address):
     """
@@ -85,23 +73,12 @@ def get_lat_lng(apiKey, address):
         lng = 0
     return (lat, lng)
 
-#ad1 = get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', input("enter address: "))
-                  #AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs
-
-# name, lat, lng, class, flowinfo, url
 
 v = open("mv01d_h12.txt")
 
 flood_df = pandas.read_csv("mv01d_h12.txt")
 print(flood_df.head())
 flood_matrix = flood_df.iloc[:,:].values
-"""
-for i in range(len(flood_matrix)):
-    address = str(flood_matrix[i][0]) + str(flood_matrix[i][1])
-    flood_matrix[i].pop(0)
-    flood_matrix[i].pop(0)
-    flood_matrix[i].insert(0, address)
-"""
 
 def frange(x, y, jump):
       while x < y:
@@ -134,11 +111,6 @@ def get_elevation(apiKey):
     return a
 
 
-#25511 Merrimac Trace Ct
-#output = get_elevation('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs')
-#print(output)
-
-#print(flood_matrix[0][0])
 m = ""
 mv = 9999999999
 for i in range(len(flood_matrix)):

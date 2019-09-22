@@ -8,7 +8,9 @@ API_KEY = '5ae74e1d6e23754d0228218b7ecfa1be'
 darksky = DarkSky(API_KEY)
 
 
-
+"""
+    get a range of daily precipitation data points for a range of latitude and longitudes.
+"""
 latitude = 42.3601
 longitude = -71.0589
 forecast = darksky.get_forecast(

@@ -1,18 +1,16 @@
 import pandas as pd
 import datetime
 import numpy as np
-#import plotly.plotly as py
-#import plotly.plotly as py
 import chart_studio as cs
 import plotly.graph_objs as go
 
+"""
+    Process Model data (which is output into 'export1.csv') and graph it into a heatmap.
+"""
+
 inp = pd.read_csv("export1.csv")
 print(inp)
-#inp = pd.DataFrame(inp, columns=['Latitude', 'Longitude', 'Magnitude'])
 
-#print(inp)
-
-#py.sign_in(username='guy477', api_key='pqkfBtB0LaoAmsS07Wd6')
 cs.tools.set_credentials_file(username='guy477', api_key='pqkfBtB0LaoAmsS07Wd6')
 cs.tools.set_config_file(world_readable=True, sharing='public')
 
