@@ -41,7 +41,7 @@ for i in flood_matrix:
         relevant.append(i)
         
 def distance (lat, long, mtx):
-    mini = 5
+    mini = 999999999
     for i in mtx:
         dis = sqrt((i[10] - lat)**2 + (i[11] - long)**2)
         if dis < mini:
@@ -58,9 +58,15 @@ class Location:
         self._eleneoprvation = elevation
         self._proximity = proximity
         self._flood = flood
-    
+        
     def get_coords():
         return (self._latitude, self._longitude)
+        
+    def get_lat():
+        return self._latitude
+        
+    def get_long():
+        return self._longitude
     
     def get_list():
         return [self._precipitation, self._elevation, self._proximity]
@@ -103,3 +109,22 @@ def fit_least_squares(input_data, output_data):
     ytx = numpy.matmul(numpy.transpose(output_data),input_data)
 
     return LinearModel(numpy.transpose(numpy.matmul(ytx,xtx_inv)))
+    
+    
+input = []
+output = []
+loc = []
+test = []
+testloc = []
+for i in locations:
+    if i.get_lat() > 30 or i.get_long() < -95.6 or i.get_long() > -95.2:
+        input.append(i.get_list())
+        output.append([i.get_flood_number()])
+        loc.append(i.get_coords()))
+    else:
+        test.append(i.get_list())
+        testloc.append(i.get_coords())
+        
+lin = fit_least_squares(input, output)
+floodtrain = numpy.matmul(input, lin.get_weights())
+floodtest = numpy.matmul(test, lin.get_weights())
