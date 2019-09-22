@@ -1,9 +1,39 @@
 ﻿import numpy
 import pandas
+from geopy.distance import great_circle
+
+resv_df = pandas.read_csv("mv01d_h12.txt")
+resv_df.head()
+resv_matrix = resv_df.iloc[:,:].values
+
+def prox(lat, long):
+    m = ""
+    mv = 9999999999
+    for i in frange(29.7, 31.7, .05):
+        for g in frange(-98, -94, .05):
+            for f in resv_matrix:
+                dis = great_circle((i, g), (f[1],f[2]))
+                if (dis < mv):
+                    m = resv_matrix[f][0]
+                    mv = dis
+    return mv
+
+def frange(x, y, jump):
+    while x < y:
+        yield x
+        x += jump
 
 flood_df = pandas.read_csv("FilteredInstruments.csv")
 flood_df.head()
 flood_matrix = flood_df.iloc[:,:].values
+
+elev_df = pandas.read_csv("FilteredInstruments.csv")
+elev_df.head()
+elev_matrix = elev_df.iloc[:,:].values
+elev_dict = {}
+
+for i in elev_matrix:
+    elev_dict[(round(i[0], 0.01), round(i[1], 0.01)] = i[2]
 
 relevant = []
 for i in flood_matrix:
@@ -17,9 +47,11 @@ def distance (lat, long, mtx):
         if dis < mini:
             mini = dis
     return mini
+    
 
+    
 class Location:
-    def __init__(self, latitude, longitude, precipitation, elevation, proximity, flood):
+    def __init__(self, latitude, longitude, precipitation, elevation, proximity):
         self._latitude = latitude
         self._longitude = longitude
         self._precipitation = precipitation
@@ -39,9 +71,9 @@ class Location:
 locations = []
 
                                                     
-for i in range(29.7,31.7,0.05):
-    for j in range(-98.0,-94.0,0.05):
-        locations.append(Location(i, j, precip(i,j), elev(i,j), prox(i,j), flood(i,j)))
+for i in frange(29.7,31.7,0.05):
+    for j in frange(-98.0,-94.0,0.05):
+        locations.append(Location(i, j, precip(i,j), elev_dict[(i,j)], prox(i,j)))
 
 
 
@@ -59,7 +91,8 @@ class LinearModel:
 
     def generate_predictions(self, inputs):
         return numpy.matmul(inputs, self._weights)
-
+        
+        
 def fit_least_squares(input_data, output_data):
     # This function's code follows the formula for finding the weights
     # that create the least mean-squared error, which is:
