@@ -2,7 +2,6 @@ from geopy.distance import great_circle
 import requests
 from pandas import DataFrame as df
 import pandas
-<<<<<<< HEAD
 import plotly.graph_objects as go 
 
 floods = pandas.read_csv('')
@@ -12,8 +11,32 @@ fig.update_layout(mapbox_style = "x", mapbox_center_lon = 180)
 fig.update_layout(margin = {"r": 0, "t": 0, "l": 0, "b": 0})
 fig.show()
 
-=======
->>>>>>> ec002a2c0950c3c66b7c4c7d76beb880de0d03a4
+def get_precip(apiKey, lat, lon, time):
+    """
+    Returns the precipation data (inches of liquid water per hour) of a location using DarkSky API.
+    API: https://darksky.net/dev/docs
+
+    #Input --------------------------------------------------------------
+    apiKey                  [str]
+    lat                     [float]
+    lon                     [float]
+    time                    [int]
+
+    #Return --------------------------------------------------------------
+    precip_ntensity   [float]
+    """
+    import requests
+    url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("5ae74e1d6e23754d0228218b7ecfa1be", lat, lon, time)
+           .format(address.replace(' ','+'), apiKey))
+    try:
+        response = requests.get(url)
+        resp_json_payload = response.json()
+        #print(resp_json_payload)
+        precip_ntensity = resp_json_payload['currently']['precipIntensity']
+    except:
+        print('ERROR: {}'.format(address))
+        precip_ntensity = 0
+    return precip_ntensity
 """
 ad1 = input("enter address").replace(" ", "+")
 response = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ad1)
