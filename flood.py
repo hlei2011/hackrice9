@@ -3,16 +3,17 @@ import requests
 from pandas import DataFrame as df
 import pandas
 import plotly.graph_objects as go 
+import requests
 
-floods = pandas.read_csv('')
-
+#floods = pandas.read_csv('')
+"""
 fig = go.Figure(go.Densitymapbox(lat=floods.Latitude, lon = floods.Longitude))
 fig.update_layout(mapbox_style = "x", mapbox_center_lon = 180)
 fig.update_layout(margin = {"r": 0, "t": 0, "l": 0, "b": 0})
 fig.show()
+"""
 
-
-def get_precip(apiKey, lat, lon):
+def get_precipIntensity(apiKey, lat, lon):
     """
     Returns the precipation data (inches of liquid water per hour) of a location using DarkSky API.
     API: https://darksky.net/dev/docs
@@ -27,7 +28,6 @@ def get_precip(apiKey, lat, lon):
     precip_ntensity   [float]
     """
     timezone = 'America/Chicago'
-    import requests
     url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("5ae74e1d6e23754d0228218b7ecfa1be", lat, lon, timezone)
            .format(address.replace(' ','+'), apiKey))
     try:
@@ -85,7 +85,7 @@ def get_lat_lng(apiKey, address):
         lng = 0
     return (lat, lng)
 
-ad1 = get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', input("enter address: "))
+#ad1 = get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', input("enter address: "))
                   #AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs
 
 # name, lat, lng, class, flowinfo, url
@@ -103,11 +103,24 @@ for i in range(len(flood_matrix)):
     flood_matrix[i].insert(0, address)
 """
 
+def frange(x, y, jump):
+      while x < y:
+        yield x
+        x += jump
+
 def get_precip(apiKey):
     a = ""
-    for i in frange()
+    for i in frange(29.7, 31.7, 0.05):
+        for g in frange(-98, -94, 0.05):
+            url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("5ae74e1d6e23754d0228218b7ecfa1be", i, g, 'America/Chicago'))
+            resp = requests.get(url)
+            resp_json = resp.json()
+            print(resp_json)
+            a += ""+str(i)+", "+str(g)+", "+str(resp_json['currently']['precipIntensity'])+'\n'
+    return a
 
-
+output1 = get_precip("5ae74e1d6e23754d0228218b7ecfa1be")
+print (output1)
 
 def get_elevation(apiKey):
     a = ""
@@ -120,14 +133,10 @@ def get_elevation(apiKey):
             a += ""+str(i)+", "+str(g)+", "+str(resp_json['results'][0]['elevation'])+'\n'
     return a
 
-def frange(x, y, jump):
-      while x < y:
-        yield x
-        x += jump
 
 #25511 Merrimac Trace Ct
-output = get_elevation('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs')
-print(output)
+#output = get_elevation('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs')
+#print(output)
 
 #print(flood_matrix[0][0])
 m = ""
