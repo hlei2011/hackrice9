@@ -11,7 +11,7 @@ import plotly.graph_objs as go
 inp = pd.read_csv("export1.csv")
 print(inp)
 
-cs.tools.set_credentials_file(username='guy477', api_key='pqkfBtB0LaoAmsS07Wd6')
+cs.tools.set_credentials_file(username='guy477', api_key='plotly api key')
 cs.tools.set_config_file(world_readable=True, sharing='public')
 
 fig = go.Figure(go.Densitymapbox(lat=inp.Latitude, lon=inp.Longitude, z=inp.Flood, radius=20))

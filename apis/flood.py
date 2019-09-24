@@ -21,7 +21,7 @@ def get_precipIntensity(apiKey, lat, lon):
     precip_ntensity   [float]
     """
     timezone = 'America/Chicago'
-    url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("5ae74e1d6e23754d0228218b7ecfa1be", lat, lon, timezone)
+    url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("darksky api key", lat, lon, timezone)
            .format(address.replace(' ','+'), apiKey))
     try:
         response = requests.get(url)
@@ -89,7 +89,7 @@ def get_precip(apiKey):
     a = ""
     for i in frange(29.7, 31.7, 0.05):
         for g in frange(-98, -94, 0.05):
-            url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("5ae74e1d6e23754d0228218b7ecfa1be", i, g, 'America/Chicago'))
+            url = ('https://api.darksky.net/forecast/{}/{},{},{}'.format("darksky api key", i, g, 'America/Chicago'))
             resp = requests.get(url)
             resp_json = resp.json()
             print(resp_json)
@@ -114,8 +114,8 @@ def get_elevation(apiKey):
 m = ""
 mv = 9999999999
 for i in range(len(flood_matrix)):
-    dis = great_circle(get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', flood_matrix[i][0][14:]), ad1)
-    if (great_circle(get_lat_lng('AIzaSyCvQdjt2eydgLImEXQYnNHkz98fIVOQWhs', flood_matrix[i][0][14:]), ad1)<mv):
+    dis = great_circle(get_lat_lng('google api key', flood_matrix[i][0][14:]), ad1)
+    if (great_circle(get_lat_lng('google api key', flood_matrix[i][0][14:]), ad1)<mv):
         m = flood_matrix[i][0]
         mv = dis
         print(m)

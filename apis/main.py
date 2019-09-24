@@ -2,7 +2,7 @@ from darksky.api import DarkSky, DarkSkyAsync
 from darksky.types import languages, units, weather
 
 
-API_KEY = '5ae74e1d6e23754d0228218b7ecfa1be'
+API_KEY = 'darksky api key'
 
 # Synchronous way
 darksky = DarkSky(API_KEY)
